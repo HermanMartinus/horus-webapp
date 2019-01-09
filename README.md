@@ -1,8 +1,6 @@
-# Ava
+## Horus - Keeper of the keys
 
-A landing page template.
-
-* [Getting started](#getting-started)
+https://hermanmartinus.github.io/horus-webapp/
 
 ## Getting started
 * First, ensure that node.js & npm are both installed. If not, choose your OS and installation method from [this page](https://nodejs.org/en/download/package-manager/) and follow the instructions.

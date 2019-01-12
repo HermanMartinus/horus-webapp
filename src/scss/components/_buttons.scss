@@ -89,8 +89,16 @@
 
 .button-block {
     display: flex;
+    width: 100%;
 }
 
-.invisible {
-    visibility: hidden;
+.disabled {
+    color: #c7c7c7 !important;
+    background: #a3a3a3;
+    cursor: not-allowed;
+
+    &:hover {
+        color: #b4b4b4;
+        background: #a3a3a3;
+    }
 }

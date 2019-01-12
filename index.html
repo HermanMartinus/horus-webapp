@@ -61,17 +61,16 @@
                                 <input class="input" oninput="gennygen();" type="text" id="serviceName" placeholder="Service name (eg: Google)&hellip;">
                             </div>
                             <div class="control">
-                                <input class="input" oninput="gennygen(); saveValue(this);" type="text" style="-webkit-text-security: disc;" id="packingKey" placeholder="Your secret packing key (eg: Peter Piper picked a pepper)&hellip;">
-                            </div>
-                            <!-- <div class="control">
-                                <a class="button button-primary button-block button-shadow" href="#">Get password</a>
-                            </div> -->
-                            <h4 class="mt-0 is-revealing password" id="generatedPassword">&nbsp;</h2>
-                            <div class="control">
-                                <a id="copy" class="button button-primary button-block button-shadow invisible" onclick="copidyCop()" href="#">Copy to clipboard</a>
+                                <input class="input" oninput="gennygen(); saveValue(this);" type="password" id="packingKey" placeholder="Your secret packing key (eg: Peter Piper picked a pepper)&hellip;">
                             </div>
                             <div class="control">
-                                <a id="show" class="button button-primary button-block button-shadow invisible" onclick="showidyShow()" href="#">Show</a>
+                                <input class="input is-revealing password" id="generatedPassword" readonly>&nbsp;</h2>
+                            </div>
+                            <div class="control">
+                                <button id="copy" class="button button-primary button-block button-shadow disabled" onclick="copidyCop()">Copy to clipboard</button>
+                            </div>
+                            <div class="control">
+                                <button id="show" class="button button-primary button-block button-shadow disabled" onclick="showidyShow()">Show</button>
                             </div>
                         </div>
                         

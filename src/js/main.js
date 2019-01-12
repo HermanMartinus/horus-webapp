@@ -38,7 +38,6 @@
 }())
 
 var thingthang = ''
-var showing = false
 var genny = document.getElementById('generatedPassword')
 var copyButton = document.getElementById('copy')
 var showButton = document.getElementById('show')
@@ -50,11 +49,14 @@ function copidyCop (e) {
   el.select()
   document.execCommand('copy')
   document.body.removeChild(el)
-  copyButton.innerText = 'Copied to clipboard'
+  copyButton.innerText = 'Copied to clipboard!'
+  setTimeout(function () {
+    copyButton.innerText = 'Copy to clipboard'
+  }, 500)
 }
 
 function showidyShow() {
-  genny.innerHTML = thingthang
+  genny.value = thingthang
 }
 
 function gennygen () {
@@ -72,14 +74,14 @@ function cerryroo (seed, service) {
     passywass += hashObject.substr(0, 7).toUpperCase()
     passywass += hashObject.substr(8, 7).toLowerCase()
     passywass += specialCharacters[10 - (service.length % 10)]
-    genny.innerHTML = '**********'
-    copyButton.classList.remove('invisible')
-    showButton.classList.remove('invisible')
+    genny.value = '****************'
+    copyButton.classList.remove('disabled')
+    showButton.classList.remove('disabled')
     return passywass
   }
-  genny.innerHTML = ''
-  copyButton.classList.add('invisible')
-  showButton.classList.add('invisible')
+  genny.value = ''
+  copyButton.classList.add('disabled')
+  showButton.classList.add('disabled')
   return ''
 }
 

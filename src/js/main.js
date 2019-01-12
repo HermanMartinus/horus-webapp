@@ -85,6 +85,10 @@ function cerryroo (seed, service) {
   return ''
 }
 
+function clickSelect(e) {
+  e.select()
+}
+
 // Save the value function - save it to localStorage as (ID, VALUE)
 function saveValue (e) {
   var id = e.id  // get the sender's id to save it .

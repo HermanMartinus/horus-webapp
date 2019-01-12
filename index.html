@@ -64,7 +64,7 @@
                                 <input class="input" oninput="gennygen(); saveValue(this);" type="password" id="packingKey" placeholder="Your secret packing key (eg: Peter Piper picked a pepper)&hellip;">
                             </div>
                             <div class="control">
-                                <input class="input is-revealing password" id="generatedPassword" readonly>&nbsp;</h2>
+                                <input class="input is-revealing password" onClick="clickSelect(this)" id="generatedPassword" readonly>&nbsp;</h2>
                             </div>
                             <div class="control">
                                 <button id="copy" class="button button-primary button-block button-shadow disabled" onclick="copidyCop()">Copy to clipboard</button>

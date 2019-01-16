@@ -55,8 +55,10 @@ function ClickSelect (e) {
 }
 
 function fallbackCopyTextToClipboard (text) {
+  generatedPassword.type = 'text'
   generatedPassword.select()
   document.execCommand('copy')
+  generatedPassword.type = 'password'
 }
 
 function copyTextToClipboard (text) {

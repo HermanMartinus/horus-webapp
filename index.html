@@ -52,25 +52,25 @@
                     <div class="hero-inner">
                         <h1 class="hero-title h2-mobile mt-0 is-revealing">Horus - simple password management</h1>
                         <p class="hero-paragraph is-revealing">
-                            Horus is a simple password generator and manager.
+                            Horus does not save passwords. It generates a unique password by hashing and decorating a combination of the secret phrase and service name.
                             <br><br>
-                            This password will always be the same whenever you enter the name of the service and your packing key together. No more having to remember passwords.
+                            One phrase to rule them all. Never remember passwords ever again.
                         </p>
                         <div class="hero-form newsletter-form field is-revealing">
                             <div class="control">
-                                <input class="input" oninput="gennygen();" type="text" id="serviceName" placeholder="Service name (eg: Google)&hellip;">
+                                <input class="input" oninput="GeneratePassword();" type="text" id="serviceName" placeholder="Service name (eg: Google)&hellip;">
                             </div>
                             <div class="control">
-                                <input class="input" oninput="gennygen(); saveValue(this);" type="password" id="packingKey" placeholder="Your secret packing key (eg: Peter Piper picked a pepper)&hellip;">
+                                <input class="input" oninput="GeneratePassword();" type="password" id="secretPhrase" placeholder="Your secret phrase (eg: Peter Piper picked a pepper)&hellip;">
                             </div>
                             <div class="control">
-                                <input class="input is-revealing password" onClick="clickSelect(this)" id="generatedPassword" readonly>&nbsp;</h2>
+                                <input class="input is-revealing password" onclick="ClickSelect(this)" id="generatedPassword" readonly>&nbsp;</h2>
                             </div>
                             <div class="control">
-                                <button id="copy" class="button button-primary button-block button-shadow disabled" onclick="copidyCop()">Copy to clipboard</button>
+                                <button id="copy" class="button button-primary button-block button-shadow disabled" onclick="CopyToClipboard()">Copy to clipboard</button>
                             </div>
                             <div class="control">
-                                <button id="show" class="button button-primary button-block button-shadow disabled" onclick="showidyShow()">Show</button>
+                                <button id="show" class="button button-primary button-block button-shadow disabled" onclick="ShowPassword()">Show</button>
                             </div>
                         </div>
                         

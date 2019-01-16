@@ -62,15 +62,18 @@
                             </div>
                             <div class="control">
                                 <input class="input" oninput="GeneratePassword();" type="password" id="secretPhrase" placeholder="Your secret phrase (eg: Peter Piper picked a pepper)&hellip;">
+                                <div class="show-in-field">
+                                    <input type="checkbox" onclick="ShowSecretPhrase()"> Show
+                                </div>
                             </div>
                             <div class="control">
-                                <input class="input is-revealing password" onclick="ClickSelect(this)" id="generatedPassword" readonly>&nbsp;</h2>
+                                <input type="password" class="input is-revealing password" onclick="ClickSelect(this)" id="generatedPassword" readonly />
+                                <div class="show-in-field">
+                                    <input type="checkbox" onclick="ShowPassword()"> Show
+                                </div>
                             </div>
                             <div class="control">
                                 <button id="copy" class="button button-primary button-block button-shadow disabled" onclick="CopyToClipboard()">Copy to clipboard</button>
-                            </div>
-                            <div class="control">
-                                <button id="show" class="button button-primary button-block button-shadow disabled" onclick="ShowPassword()">Show</button>
                             </div>
                         </div>
                         
@@ -190,6 +193,7 @@
             <section class="features section text-center">
                 <div class="container">
                     <div class="features-inner section-inner has-bottom-divider">
+                        <h1 class="hero-title h2-mobile mt-0 is-revealing">How it works</h1>
                         <div class="features-wrap">
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
@@ -344,7 +348,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="footer-copyright">&copy; 2018 Ava, all rights reserved</div>
+                    <div class="footer-copyright">&copy; 2019 Horus, all rights reserved</div>
                 </div>
             </div>
         </footer>

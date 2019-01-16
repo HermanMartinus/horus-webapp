@@ -102,3 +102,15 @@
         background: #a3a3a3;
     }
 }
+
+.show-in-field {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 55px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 14px;
+}

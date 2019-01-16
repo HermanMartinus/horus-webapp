@@ -2,7 +2,23 @@
 var thingthang = ''
 var generatedPassword = document.getElementById('generatedPassword')
 var copyButton = document.getElementById('copy')
-var showButton = document.getElementById('show')
+
+function ShowSecretPhrase () {
+  var x = document.getElementById('secretPhrase')
+  if (x.type === 'password') {
+    x.type = 'text'
+  } else {
+    x.type = 'password'
+  }
+}
+
+function ShowPassword () {
+  if (generatedPassword.type === 'password') {
+    generatedPassword.type = 'text'
+  } else {
+    generatedPassword.type = 'password'
+  }
+}
 
 function CopyToClipboard (e) {
   const el = document.createElement('textarea')
@@ -14,17 +30,13 @@ function CopyToClipboard (e) {
   copyButton.innerText = 'Copied to clipboard!'
   setTimeout(function () {
     copyButton.innerText = 'Copy to clipboard'
-  }, 500)
-}
-
-function ShowPassword () {
-  generatedPassword.value = thingthang
+  }, 1000)
 }
 
 function GeneratePassword () {
   var secretPhrase = document.getElementById('secretPhrase').value.toLowerCase()
   var serviceName = document.getElementById('serviceName').value.toLowerCase()
-  thingthang = Generate(secretPhrase, serviceName)
+  generatedPassword.value = Generate(secretPhrase, serviceName)
 }
 
 function Generate (seed, service) {
@@ -32,18 +44,14 @@ function Generate (seed, service) {
   if (seed.length > 0 && service.length > 0) {
     var combo = service + seed
     var hashObject = MD5(combo)
-    var passywass = specialCharacters[service.length % 10]
-    passywass += hashObject.substr(0, 7).toUpperCase()
-    passywass += hashObject.substr(8, 7).toLowerCase()
-    passywass += specialCharacters[10 - (service.length % 10)]
-    generatedPassword.value = '****************'
+    var generated = specialCharacters[service.length % 10]
+    generated += hashObject.substr(0, 7).toUpperCase()
+    generated += hashObject.substr(8, 7).toLowerCase()
+    generated += specialCharacters[10 - (service.length % 10)]
     copyButton.classList.remove('disabled')
-    showButton.classList.remove('disabled')
-    return passywass
+    return generated
   }
-  generatedPassword.value = ''
   copyButton.classList.add('disabled')
-  showButton.classList.add('disabled')
   return ''
 }
 

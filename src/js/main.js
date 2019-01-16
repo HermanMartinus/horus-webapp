@@ -21,7 +21,9 @@ function ShowPassword () {
 }
 
 function CopyToClipboard () {
-  copyTextToClipboard(generatedPassword.value)
+  generatedPassword.classList.remove('obscured')
+  fallbackCopyTextToClipboard(generatedPassword.value)
+  generatedPassword.classList.add('obscured')
   copyButton.innerText = 'Copied to clipboard!'
   setTimeout(function () {
     copyButton.innerText = 'Copy to clipboard'
@@ -57,7 +59,7 @@ function ClickSelect (e) {
 function fallbackCopyTextToClipboard (text) {
   generatedPassword.select()
   document.execCommand('copy')
-  console.log('Copied using the djanky method')
+  console.log('Copied using the djanky method 2')
 }
 
 function copyTextToClipboard (text) {

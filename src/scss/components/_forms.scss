@@ -75,8 +75,12 @@
 }
 
 .password {
-  text-align: center;
-  background-color: rgba(190, 190, 190, 0.467);
+    background-color: rgba(190, 190, 190, 0.467);
+}
+
+.obscured {
+    -webkit-text-security: disc;
+    -moz-text-security: disc;
 }
 
 .field-grouped {

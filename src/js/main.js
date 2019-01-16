@@ -13,10 +13,10 @@ function ShowSecretPhrase () {
 }
 
 function ShowPassword () {
-  if (generatedPassword.type === 'password') {
-    generatedPassword.type = 'text'
+  if (generatedPassword.classList.contains('obscured')) {
+    generatedPassword.classList.remove('obscured')
   } else {
-    generatedPassword.type = 'password'
+    generatedPassword.classList.add('obscured')
   }
 }
 
@@ -55,10 +55,9 @@ function ClickSelect (e) {
 }
 
 function fallbackCopyTextToClipboard (text) {
-  generatedPassword.type = 'text'
   generatedPassword.select()
   document.execCommand('copy')
-  generatedPassword.type = 'password'
+  console.log('Copied using the djanky method')
 }
 
 function copyTextToClipboard (text) {

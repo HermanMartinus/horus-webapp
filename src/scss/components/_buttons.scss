@@ -107,10 +107,14 @@
     display: flex;
     flex-flow: row;
     align-items: center;
-    justify-content: space-between;
-    width: 55px;
+    justify-content: space-evenly;
+    width: 80px;
+    height: 48px;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 0;
+    top: 0;
+    border-radius: 0 2px 2px 0;
     font-size: 14px;
+    background-color: #2e83ef;
+    color: white;
 }

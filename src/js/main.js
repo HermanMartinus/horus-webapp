@@ -23,10 +23,10 @@ function ShowPassword () {
 function CopyToClipboard () {
   if (generatedPassword.classList.contains('obscured')) {
     generatedPassword.classList.remove('obscured')
-    fallbackCopyTextToClipboard(generatedPassword.value)
+    window.Clipboard.copy(generatedPassword.value)
     generatedPassword.classList.add('obscured')
   } else {
-    fallbackCopyTextToClipboard(generatedPassword.value)
+    window.Clipboard.copy(generatedPassword.value)
   }
   copyButton.innerText = 'Copied to clipboard!'
   setTimeout(function () {

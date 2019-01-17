@@ -65,15 +65,11 @@
                             </div>
                             <div class="control">
                                 <input class="input" oninput="GeneratePassword();" type="password" id="secretPhrase" placeholder="Your secret phrase (eg: Peter Piper picked a pepper)&hellip;">
-                                <div class="show-in-field">
-                                    <input type="checkbox" onclick="ShowSecretPhrase()"> Show
-                                </div>
+                                <button class="show-in-field" onclick="ShowSecretPhrase()">Show/Hide</button>
                             </div>
                             <div class="control">
                                 <input type="text" class="input is-revealing password obscured" onclick="ClickSelect(this)" id="generatedPassword" readonly />
-                                <div class="show-in-field">
-                                    <input type="checkbox" onclick="ShowPassword()"> Show
-                                </div>
+                                <button class="show-in-field" onclick="ShowPassword()">Show/Hide</button>
                             </div>
                             <div class="control">
                                 <button id="copy" class="button button-primary button-block button-shadow disabled" onclick="CopyToClipboard()">Copy to clipboard</button>

@@ -113,8 +113,10 @@
     position: absolute;
     right: 0;
     top: 0;
+    border: none;
+    outline: none !important;
     border-radius: 0 2px 2px 0;
-    font-size: 14px;
+    font-size: 12px;
     background-color: #2e83ef;
     color: white;
 }

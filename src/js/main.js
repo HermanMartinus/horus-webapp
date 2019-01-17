@@ -21,9 +21,13 @@ function ShowPassword () {
 }
 
 function CopyToClipboard () {
-  generatedPassword.classList.remove('obscured')
-  fallbackCopyTextToClipboard(generatedPassword.value)
-  generatedPassword.classList.add('obscured')
+  if (generatedPassword.classList.contains('obscured')) {
+    generatedPassword.classList.remove('obscured')
+    fallbackCopyTextToClipboard(generatedPassword.value)
+    generatedPassword.classList.add('obscured')
+  } else {
+    fallbackCopyTextToClipboard(generatedPassword.value)
+  }
   copyButton.innerText = 'Copied to clipboard!'
   setTimeout(function () {
     copyButton.innerText = 'Copy to clipboard'
@@ -59,7 +63,7 @@ function ClickSelect (e) {
 function fallbackCopyTextToClipboard (text) {
   generatedPassword.select()
   document.execCommand('copy')
-  console.log('Copied using the djanky method 2')
+  console.log('Copied using the the cool way')
 }
 
 function copyTextToClipboard (text) {

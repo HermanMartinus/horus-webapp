@@ -1,16 +1,8 @@
 {
-  "name": "ava",
+  "name": "horuspass",
   "version": "1.0.0",
-  "description": "Ava Template",
-  "author": "Pasquale Vitiello <pasqualevitiello@gmail.com>",
-  "license": "GPLv3",
-  "repository": {
-    "type": "git",
-    "url": "https://bitbucket.org/pasqualevitiello/ava.git"
-  },
-  "bugs": {
-    "url": "https://bitbucket.org/pasqualevitiello/ava/issues"
-  },
+  "description": "Simple password managemetn",
+  "author": "Herman Martinus",
   "scripts": {
     "clean": "rimraf dist/{css/*,js/*,images/*}",
     "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
@@ -49,6 +41,6 @@
     "stylelint": "^9.4.0",
     "uglify-es": "^3.3.10"
   },
-  "homepage": "https://bitbucket.org/pasqualevitiello/ava#readme",
+  "homepage": "https://horuspass.com",
   "main": ".eslintrc.js"
 }

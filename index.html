@@ -8,10 +8,16 @@
   <link rel="stylesheet" href="style.css">
 
   <script>
-  if('serviceWorker' in navigator) {
-    navigator.serviceWorker
-            .register('service-worker.js')
-            .then(function() { console.log("Service Worker Registered"); });
+  // ServiceWorker is a progressive technology. Ignore unsupported browsers
+  if ('serviceWorker' in navigator) {
+    console.log('CLIENT: service worker registration in progress.');
+    navigator.serviceWorker.register('/service-worker.js').then(function() {
+      console.log('CLIENT: service worker registration complete.');
+    }, function() {
+      console.log('CLIENT: service worker registration failure.');
+    });
+  } else {
+    console.log('CLIENT: service worker is not supported.');
   }
   </script>
 </head>
@@ -63,7 +69,6 @@
     Set the password of your service to the generated password. Now you never have to remember that password ever again.
     Every time you want to log in, just come regenerate it and copy and paste it.
   </p>
-  <!-- partial -->
   <script src="script.js"></script>
 
 </body>

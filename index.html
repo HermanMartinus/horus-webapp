@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <title>HorusPass</title>
   <link rel='stylesheet' href='https://watercss.netlify.com/dist/dark.css'>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
 
   <script>
   if('serviceWorker' in navigator) {
     navigator.serviceWorker
-            .register('/sw.js')
+            .register('service-worker.js')
             .then(function() { console.log("Service Worker Registered"); });
   }
   </script>

@@ -4,9 +4,6 @@ const cacheName = `v${version}`;
 
 const filesToCache = [
   '/',
-  "./index.html",
-  "./script.js",
-  "./style.css"
 ];
 
 self.addEventListener('install', e => {

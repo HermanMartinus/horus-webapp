@@ -9,16 +9,14 @@
   <link rel="stylesheet" href="style.css">
 
   <script>
-  // ServiceWorker is a progressive technology. Ignore unsupported browsers
   if ('serviceWorker' in navigator) {
-    console.log('CLIENT: service worker registration in progress.');
-    navigator.serviceWorker.register('/service-worker.js').then(function() {
-      console.log('CLIENT: service worker registration complete.');
-    }, function() {
-      console.log('CLIENT: service worker registration failure.');
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').then(registration => {
+        console.log('SW registered: ', registration);
+      }).catch(registrationError => {
+        console.log('SW registration failed: ', registrationError);
+      });
     });
-  } else {
-    console.log('CLIENT: service worker is not supported.');
   }
   </script>
 </head>

@@ -22,6 +22,7 @@ function Generate (seed, service) {
   if (seed.length > 0 && service.length > 0) {
     var combo = service.toLowerCase() + seed.toLowerCase()
     var hashObject = MD5(combo)
+    console.log(hashObject);
     var generated = specialCharacters[service.length % 10]
     generated += hashObject.substr(0, 7).toUpperCase()
     generated += hashObject.substr(8, 7).toLowerCase()

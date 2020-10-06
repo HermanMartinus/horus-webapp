@@ -5,8 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <title>HorusPass</title>
-  <link rel='stylesheet' href='https://watercss.netlify.com/dist/dark.css'>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Verdana, sans-serif;
+      margin: auto;
+      padding: 20px;
+      max-width: 720px;
+      text-align: left;
+      background-color: #333;
+      color: #ddd;
+      line-height: 1.5;
+    }
+    input:not([type='checkbox']), textarea {
+      width: 300px;
+    }
+  </style>
 </head>
 
 <body>
@@ -14,21 +27,22 @@
   <fieldset>
     <legend>Generator</legend>
     <div style="display:flex">
-      <input type="password" id="seed" placeholder="Master password..." onchange="CreatePassword()" />
-      <p>
+        <input type="password" id="seed" placeholder="Master password..." onchange="CreatePassword()" />
         <input type="checkbox" name="remember" id="show-seed" onchange="ToggleSeed();">
         <label for="show-seed">Show</label>
-      </p>
     </div>
-    <input type="text" id="service" placeholder="Service..." onchange="CreatePassword()" />
-
-    <textarea readonly id="passphrase" placeholder="Generated passphrase..." class="obscured"
-      onclick="TogglePassphrase()"></textarea>
-    <div style="display:flex">
+    <p>
+      <input type="text" id="service" placeholder="Service..." onchange="CreatePassword()" />
+    </p>
+    <p>
+      <textarea readonly id="passphrase" placeholder="Generated passphrase..." class="obscured"
+        onclick="TogglePassphrase()"></textarea>
+    </p>
+    <p style="display:flex">
       <button onclick="CopyToClipboard()">Copy to clipboard</button>
       <p>
       </p>
-    </div>
+    </p>
 
   </fieldset>
 

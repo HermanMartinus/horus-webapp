@@ -1,21 +1,22 @@
+<head>
+<link rel="stylesheet" href="https://unpkg.com/bamboo.css@1.3.7/dist/bamboo.min.css">
+</head>
+<body>
 <h1>Cool password manager</h1>
 <fieldset>
   <legend>Generator</legend>
- <div style="display:flex">
+<p>
 <input type="password" id="seed" placeholder="Master password..." onchange="CreatePassword()" />
- <p>
-  <input type="checkbox" name="remember" id="show-seed" onchange="ToggleSeed();">
-  <label for="show-seed">Show</label>
 </p>
-  </div>
+<p>
 <input type="text" id="service" placeholder="Service..." onchange="CreatePassword()"/>
-
-<textarea readonly id="passphrase" placeholder="Generated passphrase..." class="obscured" onclick="TogglePassphrase()"></textarea>
-   <div style="display:flex">
-     <button onclick="CopyToClipboard()">Copy to clipboard</button>
-  <p>
 </p>
-  </div>
+<p>
+<textarea readonly id="passphrase" placeholder="Generated passphrase..." class="obscured" onclick="TogglePassphrase()"></textarea>
+</p>
+<p>
+     <button onclick="CopyToClipboard()">Copy to clipboard</button>
+     </p>
   
 </fieldset>
 
@@ -48,3 +49,6 @@
   In this way, no passwords are ever stored, and the only password you need to remember is your master passphrase, as it is the seed to generating all of your passwords.
 </p>
 <p>For those interested, the wordlist is has 2048 words, resulting in a password with 44 bits of entropy.</p>
+
+<script src="words-script.js"></script>
+</body>

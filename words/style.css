@@ -1,0 +1,4 @@
+.obscured {
+    -webkit-text-security: disc;
+    -moz-text-security: disc;
+}

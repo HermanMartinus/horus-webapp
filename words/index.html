@@ -1,0 +1,50 @@
+<h1>Cool password manager</h1>
+<fieldset>
+  <legend>Generator</legend>
+ <div style="display:flex">
+<input type="password" id="seed" placeholder="Master password..." onchange="CreatePassword()" />
+ <p>
+  <input type="checkbox" name="remember" id="show-seed" onchange="ToggleSeed();">
+  <label for="show-seed">Show</label>
+</p>
+  </div>
+<input type="text" id="service" placeholder="Service..." onchange="CreatePassword()"/>
+
+<textarea readonly id="passphrase" placeholder="Generated passphrase..." class="obscured" onclick="TogglePassphrase()"></textarea>
+   <div style="display:flex">
+     <button onclick="CopyToClipboard()">Copy to clipboard</button>
+  <p>
+</p>
+  </div>
+  
+</fieldset>
+
+<h2>How it works</h2>
+<p>Passwords suck. Passphrases are much better for many reasons niftily explained by <a href="https://xkcd.com/936/" target="_blank">this XKCD comic</a>.
+  If you're not convinced, here's <a href="https://www.explainxkcd.com/wiki/index.php/936:_Password_Strength" target="_blank">a more in-depth explanation</a>.
+</p>
+<p>
+  Cool password manager doesn't store passwords, it generates them on the fly by doing a one-way hash of your super secret master password, combined with the name of the service you're trying to access, then generating a 4 word passphrase from the result. You can then set your service's password to the generated passphrase, and whenever the need to login comes, you can regenerate your password.
+</p>
+<p>
+  Here's how the algorithm works:
+</p>
+<pre>
+  <code>
+  combo = master_password + service_name
+  // combo -> 'this is my master password facebook'
+
+  digit_array = hash(combo).split
+  // digit_array -> '["1264", "0031", "2010", "0795"]'
+
+  generated_passphrase = wordlist[digit_array[0]]
+                        +  wordlist[digit_array[1]] 
+                        +  wordlist[digit_array[2]] 
+                        +  wordlist[digit_array[3]]
+  // generated_passphrase -> 'churn about crucial indicate'
+  </code>
+</pre>
+<p>
+  In this way, no passwords are ever stored, and the only password you need to remember is your master passphrase, as it is the seed to generating all of your passwords.
+</p>
+<p>For those interested, the wordlist is has 2048 words, resulting in a password with 44 bits of entropy.</p>

@@ -1,3 +1,11 @@
+function RandomPassphrase() {
+  const words = []
+  for (let i=0; i<4; i++) {
+      words.push(wordList[parseInt(Math.floor(Math.random() * 2048)) % 2048]);
+  }
+  return words.slice(0, 4).join('-');
+}
+
 function CreatePassword() {
   const seed = document.querySelector('#seed').value;
   const service = document.querySelector('#service').value;

@@ -383,4 +383,5 @@ fieldset p:last-child, fieldset button:last-child {
     margin-top: 6px;
     cursor: pointer;
     color: gray;
+    user-select: none;
 }

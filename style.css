@@ -371,6 +371,12 @@ select:not([multiple]):not([size]) {
   }
 }
 
+fieldset p {
+    margin-bottom: 10px;
+}
+fieldset p:last-child, fieldset button:last-child {
+    margin-bottom: 5px;
+}
 
 .hide-show {
     margin-left:-80px;

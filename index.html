@@ -26,17 +26,17 @@
           <label>Service name</label>
           <br>
           <input type="text" id="service" />
-          <button onclick="CreatePassword()">Generate password</button>
+          <button onclick="createPassword()">Generate password</button>
+          <button onclick="createPassphrase()">Generate passphrase</button>
         </p>
-        <p>
+      </fieldset>
+      <fieldset class="result" style="display: none;">
           <label>Generated passphrase</label>
-          <br>
           <span style="display:flex">
             <input type="password" class="obscured" readonly id="passphrase" />
             <small onclick="toggleObscured('#passphrase')" class="hide-show">Hide/Show</small>
           </span>
           <button onclick="copy('#passphrase')">Copy to clipboard</button>
-        </p>
       </fieldset>
 
       <h4>How it works</h4>
@@ -63,6 +63,8 @@
         Every time you want to log in, just come regenerate it and copy and paste it again.
       </p>
       <script src="helpers.js"></script>
+      <script src="wordlist.js"></script>
+      <script src="md5.js"></script>
       <script src="script.js"></script>
     </article>
   </main>

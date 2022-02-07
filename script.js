@@ -2,7 +2,7 @@ function createPassword() {
   const seed = document.querySelector("#seed").value
   const service = document.querySelector("#service").value
 
-  if (!seed || !service) return
+  // if (!seed || !service) return
 
   document.querySelector("#passphrase").value = generatePassword(seed, service)
 
@@ -14,7 +14,7 @@ function createPassphrase() {
   const seed = document.querySelector("#seed").value
   const service = document.querySelector("#service").value
 
-  if (!seed || !service) return
+  // if (!seed || !service) return
 
   document.querySelector("#passphrase").value = generatePassphrase(
     seed,

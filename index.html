@@ -18,8 +18,8 @@
           <label>Master password</label>
           <br>
           <span style="display:flex">
-          <input type="password" id="seed" />
-          <small onclick="toggleObscured('#seed')" class="hide-show">Hide/Show</small>
+            <input type="password" id="seed" />
+            <small onclick="toggleObscured('#seed')" class="hide-show">Hide/Show</small>
           </span>
         </p>
         <p>
@@ -30,9 +30,11 @@
         </p>
         <p>
           <label>Generated passphrase</label>
-          <br> 
-          <input type="password" class="obscured" readonly id="passphrase" />
-          <small onclick="toggleObscured('#passphrase')" class="hide-show">Hide/Show</small>
+          <br>
+          <span style="display:flex">
+            <input type="password" class="obscured" readonly id="passphrase" />
+            <small onclick="toggleObscured('#passphrase')" class="hide-show">Hide/Show</small>
+          </span>
           <button onclick="copy('#passphrase')">Copy to clipboard</button>
         </p>
       </fieldset>

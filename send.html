@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            
+        </style>
+        <script src="aes.js"> </script>
+        <script src="wordlist.js"></script>
+    </head>
+    <body>
+        <main>
+            <article>
+                <div class="encrypt">
+                    <h1>Send Password</h1>
+                    <h2>Share passwords securely</h2>
+                    <fieldset>
+                        <div>
+                            <b>Password to share</b>
+                            <input type="password" id="password"/>
+                            <button onclick="encrypt()">Share</button>
+                        </div>
+                    </fieldset>
+                    <fieldset class="result" style="display: none;">
+                        <div>
+                            <b>Encrypted url</b>
+                            <p>
+                                <input class="url" type="text" readonly />
+                                <button onclick="copy('.encrypt .url')">Copy to clipboard</button>
+                            </p>
+                            <mark>
+                                Valid for the next 10 minutes
+                            </mark>
+                        </div>
+                    </fieldset>
+
+                    <div class="explainer">
+                        <p>
+                            Passwords are sent as an encryted package that can only be read once.
+                        </p>
+                        <details>
+                            <summary>How it works</summary>
+                            <p >
+                                <ul style="text-align:left">
+                                    <li>
+                                The password is encrypted on your device <b>(the encrypted password is never sent to the server)</b> using 2 related tokens issued by the server.
+                                    </li>
+                                    <li>
+                                A shareable URL is generated with the encrypted information and one of the two tokens as a query. Note that the encrypted password is appended using a hash parcel so it is never sent to the server.
+                                    </li>
+                                    <li>
+                                You can share the link with the recipient. Once they open it the a request is made to the token server with the one token. This retrieves the second token and the token pair is used to decrypt the password. 
+                                    </li>
+                                    <li>
+                                When the second token is requested both tokens are deleted from the server meaning the encrypted password can only be decrypted once.
+                                    </li>
+                                </ul>
+                            </p>
+                        </details>
+                    </div>
+                </div>
+                <div class="decrypt">
+                    <h3>You've been sent a password</h3>
+                    <p class="expiry-info">
+                        <mark>
+                            Valid for 10 minutes
+                        </mark>
+                        <br>
+                        <small>
+                        This password can only be viewed <u>once</u> before being destroyed.
+                        </small>
+                        <br>
+                        <br>
+                        <button onclick="decrypt()">View</button>
+                    </p>
+                    <fieldset class="result" style="display:none">
+                        <b>Password</b>
+                        <p>
+                            <input id="decrypted" type="text" readonly/>
+                            <button onclick="copy('#decrypted')">Copy to clipboard</button>
+                        </p>
+                    </fieldset>
+                </div>
+            </article>
+        </main>
+        <footer>
+                Send passwords securely with <a href="https://horuspass.com/send-password-2">Send Password.</a>
+        </footer>
+        <script>
+            const url = new URL(window.location)            
+            const value = window.location.hash.substring(1, 999);
+            const token =  url.searchParams.get("token")
+
+            if (value) {
+                document.querySelector('.encrypt').style.display = 'none'
+            } else {
+                document.querySelector('.decrypt').style.display = 'none'
+            }
+            
+            function encrypt() {
+                fetch('https://send-password.yukihira.workers.dev/token')
+                    .then(response=>response.json())
+                    .then(response => {
+                        const key = response.token + response.value
+
+                        const password = document.getElementById('password').value
+                        
+                        const encrypted = CryptoJS.AES.encrypt(password, key)
+                        
+                        const resultDiv = document.querySelector('.encrypt .result')
+                        resultDiv.style.display = "block"
+                        resultDiv.querySelector('.url').value = `${window.location.href}?token=${response.token}#${encrypted}`
+                })
+            }
+            
+            function decrypt() {
+                fetch(`https://send-password.yukihira.workers.dev/validate?token=${token}`)
+                    .then(response=>response.text())
+                    .then(response => {
+                        const key = token + response
+                        const decrypted = CryptoJS.AES.decrypt(value.replace(' ', '+'), key);
+
+                        document.getElementById('decrypted').value = decrypted.toString(CryptoJS.enc.Utf8)
+
+                        document.querySelector('.decrypt .result').style.display = "block"
+                        document.querySelector('.decrypt .expiry-info').style.display = "none"
+
+                        if (!decrypted.toString(CryptoJS.enc.Utf8)) {
+                            document.querySelector('.decrypt .result').innerHTML = "Either the passphrase is incorrect or this link has expired 🤷‍♂️"
+                        }
+                    })
+            }
+            
+            function randomPassphrase() {
+                const words = []
+                for (let i=0; i<4; i++) {
+                    words.push(wordList()[parseInt(Math.floor(Math.random() * 2048)) % 2048]);
+                }
+                return words.slice(0, 4).join('-');
+            }
+
+            function copy(selector) {
+                document.execCommand('copy', false, document.querySelector(selector).select());
+            }
+        </script>
+    </body>
+</html>

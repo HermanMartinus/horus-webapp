@@ -5,22 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <title>HorusPass</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: Verdana, sans-serif;
-      margin: auto;
-      padding: 20px;
-      max-width: 720px;
       text-align: left;
-      background-color: #333;
-      color: #ddd;
-      line-height: 1.5;
     }
-    
-    input:not([type='checkbox']), textarea {
-      width: 300px;
-    }
-
     .obscured {
       background: #333;
       color: #333;
@@ -29,55 +18,58 @@
 </head>
 
 <body>
-  <h1>HorusPass</h1>
-  <fieldset>
-    <legend>Generator</legend>
-    <div style="display:flex">
-        <input type="password" id="seed" placeholder="Master password..." onchange="CreatePassword()" />
-        <input type="checkbox" name="remember" id="show-seed" onchange="ToggleSeed();">
-        <label for="show-seed">Show</label>
-    </div>
-    <p>
-      <input type="text" id="service" placeholder="Service..." onchange="CreatePassword()" />
-    </p>
-    <p>
-      <textarea readonly id="passphrase" placeholder="Generated passphrase..." class="obscured"
-        onclick="TogglePassphrase()"></textarea>
-    </p>
-    <p style="display:flex">
-      <button onclick="CopyToClipboard()">Copy to clipboard</button>
+  <main>
+    <article>
+      <h1>HorusPass</h1>
+      <h3>The trustless password manager</h3>
+      <fieldset>
+        <p>
+          <label>Master password</label>
+          <br>
+          <input type="password" id="seed" />
+          <button onclick="ToggleSeed()" title="Show">Show</button>
+        </p>
+        <p>
+          <label>Service name</label>
+          <br>
+          <input type="text" id="service" />
+          <button onclick="CreatePassword()">Generate password</button>
+        </p>
+        <p>
+          <label>Generated passphrase</label>
+          <br> 
+          <input type="text" class="obscured" readonly id="passphrase" />
+          <button onclick="TogglePassphrase()">Show</button>
+          <button onclick="CopyToClipboard()">Copy to clipboard</button>
+        </p>
+      </fieldset>
+
+      <h4>How it works</h4>
+      <h5>Step 1</h5>
       <p>
+        Type in the name of the service you would like to access (eg: Facebook). Case does not matter. This will be how you
+        will retrieve the service's password every time.
       </p>
-    </p>
 
-  </fieldset>
+      <h5>Step 2</h5>
+      <p>
+        Type in your secret phrase. This is a phrase that you must never write down or tell anyone. It is essentially your
+        "master key".
+      </p>
 
-  <h2>How it works</h2>
-  <h3>Step 1</h3>
-  <p>
-    Type in the name of the service you would like to access (eg: Facebook). Case does not matter. This will be how you
-    will retrieve the service's password every time.
-  </p>
+      <h5>Step 3</h5>
+      <p>
+        A password is generated in the hidden field. The password is made by doing a one way hash of the secret phrase
+        combined with the service name and then decorated with special characters.
+      </p>
 
-  <h3>Step 2</h3>
-  <p>
-    Type in your secret phrase. This is a phrase that you must never write down or tell anyone. It is essentially your
-    "master key".
-  </p>
-
-  <h3>Step 3</h3>
-  <p>
-    A password is generated in the hidden field. The password is made by doing a one way hash of the secret phrase
-    combined with the service name and then decorated with special characters.
-  </p>
-
-  <h3>Step 4</h3>
-  <p>
-    Set the password of your service to the generated password. Now you never have to remember that password ever again.
-    Every time you want to log in, just come regenerate it and copy and paste it.
-  </p>
-  <script src="script.js"></script>
-
+      <h5>Step 4</h5>
+      <p>
+        Set the password of your service to the generated password. Now you never have to remember that password ever again.
+        Every time you want to log in, just come regenerate it and copy and paste it.
+      </p>
+      <script src="script.js"></script>
+    </article>
+  </main>
 </body>
-
 </html>

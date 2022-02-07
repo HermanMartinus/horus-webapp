@@ -24,10 +24,9 @@
                     <fieldset class="result" style="display: none;">
                         <div>
                             <b>Encrypted url</b>
-                            <p>
-                                <input class="url" type="text" readonly />
-                                <button onclick="copy('.encrypt .url')">Copy to clipboard</button>
-                            </p>
+                            <input class="url" type="text" readonly />
+                            <button onclick="copy('.encrypt .url')">Copy to clipboard</button>
+                            <br>
                             <mark>
                                 Valid for the next 10 minutes
                             </mark>
@@ -43,13 +42,13 @@
                             <p >
                                 <ul style="text-align:left">
                                     <li>
-                                The password is encrypted on your device <b>(the encrypted password is never sent to the server)</b> using 2 related tokens issued by the server.
+                                The password is encrypted in-browser using 2 related tokens issued by the server <b>(the encrypted password is never sent to the server)</b>.
                                     </li>
                                     <li>
-                                A shareable URL is generated with the encrypted information and one of the two tokens as a query. Note that the encrypted password is appended using a hash parcel so it is never sent to the server.
+                                A shareable URL is generated with the encrypted password package as a hash parameter (so it isn't sent to any server) and the first of the two tokens as a query.
                                     </li>
                                     <li>
-                                You can share the link with the recipient. Once they open it the a request is made to the token server with the one token. This retrieves the second token and the token pair is used to decrypt the password. 
+                                Once the link is shared with the recipient and they open it a request is made to the token server with the one token from the parameter. This retrieves the second token from the token server and the token pair is used to decrypt the password. 
                                     </li>
                                     <li>
                                 When the second token is requested both tokens are deleted from the server meaning the encrypted password can only be decrypted once.
@@ -75,10 +74,8 @@
                     </p>
                     <fieldset class="result" style="display:none">
                         <b>Password</b>
-                        <p>
-                            <input id="decrypted" type="text" readonly/>
-                            <button onclick="copy('#decrypted')">Copy to clipboard</button>
-                        </p>
+                        <input id="decrypted" type="text" readonly/>
+                        <button onclick="copy('#decrypted')">Copy to clipboard</button>
                     </fieldset>
                 </div>
             </article>
@@ -126,7 +123,7 @@
                         document.querySelector('.decrypt .expiry-info').style.display = "none"
 
                         if (!decrypted.toString(CryptoJS.enc.Utf8)) {
-                            document.querySelector('.decrypt .result').innerHTML = "Either the passphrase is incorrect or this link has expired 🤷‍♂️"
+                            document.querySelector('.decrypt .result').innerHTML = "Either the passphrase is incorrect or this link has expired."
                         }
                     })
             }

@@ -233,6 +233,9 @@ fieldset {
 legend {
   padding: 0 0.25rem;
 }
+label {
+    font-weight: bold;
+}
 button,
 input,
 select,
@@ -366,4 +369,12 @@ select:not([multiple]):not([size]) {
   select:not([multiple]):not([size]) {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='16' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' fill='%23eceff4'%3E%3Cpath d='M5 6l5 5 5-5 2 1-7 7-7-7 2-1z'/%3E%3C/svg%3E");
   }
+}
+
+
+.hide-show {
+    margin-left:-80px;
+    margin-top: 6px;
+    cursor: pointer;
+    color: gray;
 }

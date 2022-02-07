@@ -4,25 +4,11 @@ function CreatePassword() {
   document.querySelector('#passphrase').value = Generate(seed, service)
 }
 
-function ToggleSeed() {
-  const seedInput = document.querySelector('#seed');
-  seedInput.type = seedInput.type == "password" ? "text" : "password";
-}
-function TogglePassphrase() {
-  const passPhraseElement = document.getElementById('passphrase');
-  if (passPhraseElement.classList.contains('obscured')) {
-    passPhraseElement.classList.remove('obscured');
-  } else {
-    passPhraseElement.classList.add('obscured');
-  }
-  
-}
 function Generate (seed, service) {
   var specialCharacters = '!@#$%^&*()/'
   if (seed.length > 0 && service.length > 0) {
     var combo = service.toLowerCase() + seed.toLowerCase()
     var hashObject = MD5(combo)
-    console.log(hashObject);
     var generated = specialCharacters[service.length % 10]
     generated += hashObject.substr(0, 7).toUpperCase()
     generated += hashObject.substr(8, 7).toLowerCase()
@@ -31,12 +17,7 @@ function Generate (seed, service) {
   }
   return ''
 }
-function CopyToClipboard() {
-  const passPhraseElement = document.getElementById('passphrase');
-  passPhraseElement.classList.remove('obscured');
-  document.execCommand('copy', false, passPhraseElement.select());
-  passPhraseElement.classList.add('obscured');
-}
+
 var MD5 = function (string) {
   function RotateLeft (lValue, iShiftBits) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits))

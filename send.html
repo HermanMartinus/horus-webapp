@@ -5,6 +5,7 @@
         <style>
             
         </style>
+        <script src="helpers.js"></script>
         <script src="aes.js"> </script>
         <script src="wordlist.js"></script>
     </head>
@@ -16,14 +17,15 @@
                     <h2>Share passwords securely</h2>
                     <fieldset>
                         <div>
-                            <b>Password to share</b>
+                            <label>Password to share</label>
                             <input type="password" id="password"/>
+                            <small onclick="toggleObscured('#password')" class="hide-show">Hide/Show</small>
                             <button onclick="encrypt()">Share</button>
                         </div>
                     </fieldset>
                     <fieldset class="result" style="display: none;">
                         <div>
-                            <b>Encrypted url</b>
+                            <label>Encrypted url</label>
                             <input class="url" type="text" readonly />
                             <button onclick="copy('.encrypt .url')">Copy to clipboard</button>
                             <br>
@@ -73,7 +75,7 @@
                         <button onclick="decrypt()">View</button>
                     </p>
                     <fieldset class="result" style="display:none">
-                        <b>Password</b>
+                        <label>Password</label>
                         <input id="decrypted" type="text" readonly/>
                         <button onclick="copy('#decrypted')">Copy to clipboard</button>
                     </fieldset>
@@ -81,7 +83,7 @@
             </article>
         </main>
         <footer>
-                Send passwords securely with <a href="https://horuspass.com/send-password-2">Send Password.</a>
+                Send passwords securely with <a href="https://horuspass.com/send">Send Password.</a>
         </footer>
         <script>
             const url = new URL(window.location)            
@@ -126,18 +128,6 @@
                             document.querySelector('.decrypt .result').innerHTML = "Either the passphrase is incorrect or this link has expired."
                         }
                     })
-            }
-            
-            function randomPassphrase() {
-                const words = []
-                for (let i=0; i<4; i++) {
-                    words.push(wordList()[parseInt(Math.floor(Math.random() * 2048)) % 2048]);
-                }
-                return words.slice(0, 4).join('-');
-            }
-
-            function copy(selector) {
-                document.execCommand('copy', false, document.querySelector(selector).select());
             }
         </script>
     </body>

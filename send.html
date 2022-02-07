@@ -97,12 +97,14 @@
             }
             
             function encrypt() {
+                const password = document.getElementById('password').value
+                if (!password) return
                 fetch('https://send-password.yukihira.workers.dev/token')
                     .then(response=>response.json())
                     .then(response => {
                         const key = response.token + response.value
 
-                        const password = document.getElementById('password').value
+                        
                         
                         const encrypted = CryptoJS.AES.encrypt(password, key)
                         

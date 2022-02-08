@@ -78,6 +78,8 @@
                         <label>Password</label>
                         <input id="decrypted" type="text" readonly/>
                         <button onclick="copy('#decrypted')">Copy to clipboard</button>
+                        <br>
+                        <mark>This link has been burnt and cannot be viewed again.</mark>
                     </fieldset>
                 </div>
             </article>
@@ -92,6 +94,15 @@
 
             if (value) {
                 document.querySelector('.encrypt').style.display = 'none'
+                const expiry = new Date(+token)
+                if (expiry.getTime() < new Date().getTime()) {
+                    document.querySelector('.expiry-info mark').innerText = "This link has expired"
+                    document.querySelector('.expiry-info small').innerText = "Request a new shared link from the sender"
+                    document.querySelector('.expiry-info button').style.display = "none"
+                } else {
+                    document.querySelector('.expiry-info mark').innerText =
+                        `This link expires at ${expiry.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit' })}`
+                }
             } else {
                 document.querySelector('.decrypt').style.display = 'none'
             }
@@ -127,7 +138,7 @@
                         document.querySelector('.decrypt .expiry-info').style.display = "none"
 
                         if (!decrypted.toString(CryptoJS.enc.Utf8)) {
-                            document.querySelector('.decrypt .result').innerHTML = "Either the passphrase is incorrect or this link has expired."
+                            document.querySelector('.decrypt .result').innerHTML = "This link has been burnt."
                         }
                     })
             }

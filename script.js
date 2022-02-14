@@ -25,13 +25,14 @@ function generatePassphrase(seed, service) {
   const combo = (service + seed).toLowerCase()
   const hashObject = MD5(combo)
   const digitList = hashObject.replace(/\D/g, "").match(/.{1,4}/g)
+
   const words = []
   for (let x of digitList) {
     words.push(wordList()[parseInt(x) % 2048])
   }
 
   let generated = words.slice(0, 4).join("-")
-  generated = generated.charAt(0).toUpperCase() + generated.slice(1) + "-1"
+  generated = `${generated.charAt(0).toUpperCase()}${generated.slice(1)}-${(digitList[4] % 10)}`
   return generated
 }
 

@@ -13,34 +13,33 @@
         <main>
             <article>
                 <div class="encrypt">
-                    <h1>Send Password</h1>
-                    <h2>Share passwords securely</h2>
-                    <fieldset>
+                    <h1>Send text securely</h1>
+                    <h3>Share sensitive information like passwords and API keys safely</h3>
+                    <fieldset class="input">
                         <div>
-                            <label>Password to share</label>
-                            <input autofocus type="password" id="password" maxlength=500/>
-                            <small onclick="toggleObscured('#password')" class="hide-show">Hide/Show</small>
+                            <label>Information you'd like to send</label>
+                            <textarea autofocus type="password" id="password"></textarea>
                             <button onclick="encrypt()">Share</button>
                         </div>
                     </fieldset>
                     <fieldset class="result" style="display: none;">
                         <div>
-                            <label>Encrypted url</label>
+                            <label>Share this link</label>
                             <input class="url" type="text" readonly />
                             <button onclick="copy('.encrypt .url')">Copy to clipboard</button>
                             <br>
                             <mark>
-                                Valid for the next 10 minutes
+                                This link is valid for the next 10 minutes or until read
                             </mark>
                         </div>
                     </fieldset>
 
                     <div class="explainer">
-                        <p>
-                            Passwords are sent as an expiring encryted package that can only be read once.
-                        </p>
                         <details>
                             <summary>How it works</summary>
+                            <p>
+                                Passwords are sent as an expiring encryted package that can only be read once.
+                            </p>
                             <p >
                                 <ul style="text-align:left">
                                     <li>
@@ -115,10 +114,10 @@
                     .then(response => {
                         const key = response.token + response.value
 
-                        
-                        
                         const encrypted = CryptoJS.AES.encrypt(password, key)
                         
+                        document.querySelector('.encrypt .input').style.display = "none"
+
                         const resultDiv = document.querySelector('.encrypt .result')
                         resultDiv.style.display = "block"
                         resultDiv.querySelector('.url').value = `${window.location.href}?token=${response.token}#${encrypted}`

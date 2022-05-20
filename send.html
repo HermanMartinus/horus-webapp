@@ -60,22 +60,22 @@
                     </div>
                 </div>
                 <div class="decrypt">
-                    <h3>You've been sent a password</h3>
+                    <h3>You've been sent sensitive information (securely)</h3>
                     <p class="expiry-info">
                         <mark>
                             Valid for 10 minutes
                         </mark>
                         <br>
                         <small>
-                        This password can only be viewed <u>once</u> before being destroyed.
+                        This information can only be viewed <u>once</u> before being destroyed.
                         </small>
                         <br>
                         <br>
                         <button onclick="decrypt()">View</button>
                     </p>
                     <fieldset class="result" style="display:none">
-                        <label>Password</label>
-                        <input id="decrypted" type="text" readonly/>
+                        <label>Information</label>
+                        <textarea id="decrypted" readonly></textarea>
                         <button onclick="copy('#decrypted')">Copy to clipboard</button>
                         <br>
                         <mark>This link has been burnt and cannot be viewed again.</mark>
@@ -115,7 +115,6 @@
                         const key = response.token + response.value
 
                         const encrypted = CryptoJS.AES.encrypt(password, key)
-                        
                         document.querySelector('.encrypt .input').style.display = "none"
 
                         const resultDiv = document.querySelector('.encrypt .result')

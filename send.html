@@ -16,73 +16,47 @@
                     <h1>Send text securely</h1>
                     <h3>Share sensitive information like passwords and API keys safely</h3>
                     <fieldset class="input">
-                        <div>
-                            <label>Information you'd like to send</label>
-                            <textarea autofocus type="password" id="password"></textarea>
-                            <button onclick="encrypt()">Share</button>
-                        </div>
+                        <label for="password">Information you'd like to send</label>
+                        <textarea autofocus id="password"></textarea>
+                        <button onclick="encrypt()">Create secure link</button>
                     </fieldset>
                     <fieldset class="result" style="display: none;">
-                        <div>
-                            <label>Share this link</label>
+                        <label>Share this link</label>
+                        <div class="row">
                             <input class="url" type="text" readonly />
-                            <button onclick="copy('.encrypt .url')">Copy to clipboard</button>
-                            <br>
-                            <mark>
-                                This link is valid for the next 10 minutes or until read
-                            </mark>
+                            <button onclick="copy('.encrypt .url')">Copy</button>
                         </div>
+                        <mark>This link is valid for the next 10 minutes or until read</mark>
                     </fieldset>
-
-                    <div class="explainer">
-                        <details>
-                            <summary>How it works</summary>
-                            <p>
-                                Passwords are sent as an expiring encryted package that can only be read once.
-                            </p>
-                            <p >
-                                <ul style="text-align:left">
-                                    <li>
-                                The password is encrypted in-browser using 2 related tokens issued by the server <b>(the encrypted password is never sent to the server)</b>.
-                                    </li>
-                                    <li>
-                                A shareable URL is generated with the encrypted password package as a hash parameter (so it isn't sent to any server) and the first of the two tokens as a query.
-                                    </li>
-                                    <li>
-                                Once the link is shared with the recipient and they open it a request is made to the token server with the one token from the parameter. This retrieves the second token from the token server and the token pair is used to decrypt the password. 
-                                    </li>
-                                    <li>
-                                When the second token is requested both tokens are deleted from the server meaning the encrypted password can only be decrypted once.
-                                    </li>
-                                </ul>
-                            </p>
-                        </details>
-                    </div>
+                    <details>
+                        <summary>How it works</summary>
+                        <p>Passwords are sent as an expiring encrypted package that can only be read once.</p>
+                        <ul>
+                            <li>The password is encrypted in-browser using 2 related tokens issued by the server <b>(the encrypted password is never sent to the server)</b>.</li>
+                            <li>A shareable URL is generated with the encrypted password package as a hash parameter (so it isn't sent to any server) and the first of the two tokens as a query.</li>
+                            <li>Once the link is shared with the recipient and they open it a request is made to the token server with the one token from the parameter. This retrieves the second token from the token server and the token pair is used to decrypt the password.</li>
+                            <li>When the second token is requested both tokens are deleted from the server meaning the encrypted password can only be decrypted once.</li>
+                        </ul>
+                    </details>
                 </div>
                 <div class="decrypt">
-                    <h3>You've been sent sensitive information (securely)</h3>
-                    <p class="expiry-info">
-                        <mark>
-                            Valid for 10 minutes
-                        </mark>
-                        <br>
-                        <small>
-                        This information can only be viewed <u>once</u> before being destroyed.
-                        </small>
-                        <br>
-                        <br>
+                    <h1>You've been sent sensitive information</h1>
+                    <h3>It was encrypted in the sender's browser and can only be viewed once</h3>
+                    <fieldset class="expiry-info">
+                        <mark>Valid for 10 minutes</mark>
+                        <p><small>This information can only be viewed <b>once</b> before being destroyed.</small></p>
                         <button onclick="decrypt()">View</button>
-                    </p>
+                    </fieldset>
                     <fieldset class="result" style="display:none">
                         <label>Information</label>
                         <textarea id="decrypted" readonly></textarea>
                         <button onclick="copy('#decrypted')">Copy to clipboard</button>
-                        <br>
                         <mark>This link has been burnt and cannot be viewed again.</mark>
                     </fieldset>
                 </div>
             </article>
         </main>
+
         <footer>
                 Send passwords securely with <a href="https://horuspass.com/send">Send Password.</a>
         </footer>

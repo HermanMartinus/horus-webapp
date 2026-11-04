@@ -109,7 +109,7 @@
             function encrypt() {
                 const password = document.getElementById('password').value
                 if (!password) return
-                fetch('https://send-password.yukihira.workers.dev/token')
+                fetch('https://hermansandbox.fly.dev/send-password/token')
                     .then(response=>response.json())
                     .then(response => {
                         const key = response.token + response.value
@@ -124,18 +124,19 @@
             }
             
             function decrypt() {
-                fetch(`https://send-password.yukihira.workers.dev/validate?token=${token}`)
+                fetch(`https://hermansandbox.fly.dev/send-password/validate?token=${token}`)
                     .then(response=>response.text())
                     .then(response => {
                         const key = token + response
-                        const decrypted = CryptoJS.AES.decrypt(value.replace(' ', '+'), key);
+                        let decrypted = ''
+                        try { decrypted = CryptoJS.AES.decrypt(value.replace(' ', '+'), key).toString(CryptoJS.enc.Utf8) } catch {}
 
-                        document.getElementById('decrypted').value = decrypted.toString(CryptoJS.enc.Utf8)
+                        document.getElementById('decrypted').value = decrypted
 
                         document.querySelector('.decrypt .result').style.display = "block"
                         document.querySelector('.decrypt .expiry-info').style.display = "none"
 
-                        if (!decrypted.toString(CryptoJS.enc.Utf8)) {
+                        if (!decrypted) {
                             document.querySelector('.decrypt .result').innerHTML = "This link has been burnt."
                         }
                     })
